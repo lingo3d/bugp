@@ -1,0 +1,26 @@
+{
+  "name": "node-typescript-boilerplate",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "17",
+    "rimraf": "3",
+    "tslib": "2",
+    "typescript": "*"
+  },
+  "scripts": {
+    "start": "node build/src/main.js",
+    "dev": "tsc -p tsconfig.json && node build/src/main.js",
+    "clean": "rimraf coverage build tmp",
+    "build": "tsc -p tsconfig.json",
+    "build:watch": "tsc -w -p tsconfig.json",
+    "build:release": "npm run clean && tsc -p tsconfig.release.json"
+  },
+  "dependencies": {
+    "@colyseus/arena": "^0.14.24",
+    "@colyseus/monitor": "^0.14.22",
+    "@colyseus/schema": "^1.0.34",
+    "colyseus": "^0.14.23"
+  }
+}
