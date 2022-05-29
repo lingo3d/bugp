@@ -1,15 +1,11 @@
 <script setup lang="ts">
 import { World, Model, ThirdPersonCamera, Dummy, Find, Setup, types, keyboard } from "lingo3d-vue"
-import { ref, watchEffect } from "vue"
+import { ref } from "vue"
 import useColyseus from "./hooks/useColyseus"
 
-const players = useColyseus()
-
-// watchEffect(() => {
-//   console.log("players changed", players)
-// })
-
 const dummyRef = ref<types.Dummy>()
+
+const dummyProxies = useColyseus(dummyRef)
 
 keyboard.onKeyPress = (_, pressed) => {
   const dummy = dummyRef.value
@@ -63,6 +59,12 @@ keyboard.onKeyUp = (_, pressed) => {
       :scale-z="150"
       src="map.glb"
       physics="map"
+    />
+    <Dummy
+      v-for="(dummyProxy, sessionId) in dummyProxies"
+      :key="sessionId"
+      :proxy="dummyProxy"
+      preset="rifle"
     />
     <ThirdPersonCamera
       :x="1179.8"

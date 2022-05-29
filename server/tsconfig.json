@@ -1,18 +1,16 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
-    "module": "NodeNext",
-    "lib": ["ES2022"],
-    "moduleResolution": "NodeNext",
-    "rootDir": ".",
-    "outDir": "build",
-    "allowSyntheticDefaultImports": true,
-    "importHelpers": true,
+    "outDir": "lib",
+    "target": "es6",
+    "module": "commonjs",
     "strict": true,
-    "sourceMap": true,
-    "forceConsistentCasingInFileNames": true,
+    "allowJs": true,
+    "esModuleInterop": true,
     "experimentalDecorators": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/**/*", "__tests__/**/*"]
+  "include": [
+    "src"
+  ]
 }

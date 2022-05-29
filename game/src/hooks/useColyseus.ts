@@ -1,20 +1,18 @@
 import { Client } from "colyseus.js"
-import { types } from "lingo3d-vue"
-import { onMounted, reactive } from "vue"
+import { types, createProxy, loop } from "lingo3d-vue"
+import { reactive, Ref, watchEffect } from "vue"
 
-type Player = {
-    sessionId: string
-    dummy: types.Dummy | undefined
-}
-
-export default () => {
+export default (dummyRef: Ref<types.Dummy | undefined>) => {
     const client = new Client("ws://localhost:2567")
-    const players = reactive<Record<string, Player>>({})
+    const dummyProxies = reactive<Record<string, types.Dummy>>({})
     
-    onMounted(async () => {
-        const room = await client.joinOrCreate<any>("MyRoom")
+    watchEffect(async cleanup => {
+        const dummy = dummyRef.value
+        if (!dummy) return
 
-        room.state.players.onAdd = (_: any, sessionId: string) => {
+        const room = await client.joinOrCreate<any>("my_room")
+
+        room.state.players.onAdd = (player: any, sessionId: string) => {
             console.log("player joined", sessionId)
             
             const isMe = room.sessionId === sessionId
@@ -22,15 +20,30 @@ export default () => {
                 console.log("I am", sessionId)
                 return
             }
-            else players[sessionId] = { sessionId, dummy: undefined }
+
+            const dummyProxy = dummyProxies[sessionId] = createProxy<types.Dummy>()
+
+            player.onChange = () => {
+                Object.assign(dummyProxy, player)
+            }
         }
 
         room.state.players.onRemove = (_: any, sessionId: string) => {
             console.log("player left", sessionId)
 
-            delete players[sessionId]
+            delete dummyProxies[sessionId]
         }
+
+        const handle = loop(() => {
+            const { x, y, z, rotationX, rotationY, rotationZ, animation } = dummy
+            room.send("updatePlayer", { x, y, z, rotationX, rotationY, rotationZ, animation })
+        })
+
+        cleanup(() => {
+            handle.cancel()
+            room.leave()
+        })
     })
 
-    return players
+    return dummyProxies
 }
