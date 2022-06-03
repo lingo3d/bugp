@@ -47,7 +47,7 @@ keyboard.onKeyUp = (_, pressed) => {
   <World>
     <Model
       :metalness-factor="1"
-      :roughness-factor="0.4"
+      :roughness-factor="0.3"
       pbr
       :x="9.05"
       :y="34.18"
@@ -113,6 +113,6 @@ keyboard.onKeyUp = (_, pressed) => {
         </Find>
       </Dummy>
     </ThirdPersonCamera>
-    <Setup default-light="studio" :default-light-scale="9" :exposure="0.7" default-orbit-controls />
+    <Setup default-light="studio" :exposure="1.5" default-orbit-controls />
   </World>
 </template>
