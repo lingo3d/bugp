@@ -113,6 +113,6 @@ keyboard.onKeyUp = (_, pressed) => {
         </Find>
       </Dummy>
     </ThirdPersonCamera>
-    <Setup default-light="studio" :exposure="1.5" default-orbit-controls />
+    <Setup default-light="studio" default-orbit-controls />
   </World>
 </template>
