@@ -47,7 +47,7 @@ keyboard.onKeyUp = (_, pressed) => {
   <World>
     <Model
       :metalness-factor="1"
-      :roughness-factor="0.3"
+      :roughness-factor="0.35"
       pbr
       :x="9.05"
       :y="34.18"
