@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { World, Model, ThirdPersonCamera, Dummy, Find, Setup, types, keyboard } from "lingo3d-vue"
+import { World, Model, ThirdPersonCamera, Dummy, Find, Setup, types, keyboard, LingoEditor } from "lingo3d-vue"
 import { ref } from "vue"
 import useColyseus from "./hooks/useColyseus"
 
@@ -49,14 +49,11 @@ keyboard.onKeyUp = (_, pressed) => {
       :metalness-factor="1"
       :roughness-factor="0.35"
       pbr
-      :x="9.05"
-      :y="34.18"
-      :z="28.5"
       :width="121.25"
       :depth="84.17"
-      :scale-x="150"
-      :scale-y="150"
-      :scale-z="150"
+      :scale-x="200"
+      :scale-y="200"
+      :scale-z="200"
       src="map.glb"
       physics="map"
     />
