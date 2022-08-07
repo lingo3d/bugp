@@ -8,6 +8,7 @@ import {
   Setup,
   types,
   keyboard,
+  Reticle,
 } from "lingo3d-vue";
 import { ref } from "vue";
 import useColyseus from "./hooks/useColyseus";
@@ -45,10 +46,10 @@ keyboard.onKeyUp = (_, pressed) => {
 </script>
 
 <template>
-  <World>
+  <World default-light="studio">
     <Model
       :metalness-factor="2"
-      :roughness-factor="0.3"
+      :roughness-factor="0.2"
       :scale="200"
       src="map.glb"
       physics="map"
@@ -59,7 +60,12 @@ keyboard.onKeyUp = (_, pressed) => {
       :proxy="dummyProxy"
       preset="rifle"
     />
-    <ThirdPersonCamera mouse-control active :inner-x="20">
+    <ThirdPersonCamera
+      mouse-control
+      active
+      :inner-x="30"
+      :inner-y="50"
+    >
       <Dummy
         :x="1179.8"
         :y="-575.03"
@@ -83,6 +89,6 @@ keyboard.onKeyUp = (_, pressed) => {
         </Find>
       </Dummy>
     </ThirdPersonCamera>
-    <Setup default-light="studio" />
+    <Reticle />
   </World>
 </template>
