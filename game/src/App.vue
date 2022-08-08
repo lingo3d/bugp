@@ -46,7 +46,7 @@ keyboard.onKeyUp = (_, pressed) => {
 </script>
 
 <template>
-  <World default-light="studio">
+  <World>
     <Model
       :metalness-factor="2"
       :roughness-factor="0.2"
@@ -90,5 +90,6 @@ keyboard.onKeyUp = (_, pressed) => {
       </Dummy>
     </ThirdPersonCamera>
     <Reticle />
+    <Setup default-light="studio" />
   </World>
 </template>
