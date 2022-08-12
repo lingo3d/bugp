@@ -90,6 +90,6 @@ keyboard.onKeyUp = (_, pressed) => {
       </Dummy>
     </ThirdPersonCamera>
     <Reticle />
-    <Setup default-light="studio" />
+    <Setup default-light="studio" :exposure="2" />
   </World>
 </template>
