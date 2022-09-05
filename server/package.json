@@ -10,16 +10,17 @@
     "clean": "node node_modules/rimraf/bin lib"
   },
   "devDependencies": {
+    "@types/express": "4",
     "copyfiles": "2",
     "rimraf": "3",
     "ts-node": "*",
     "ts-node-dev": "*",
-    "@types/express": "4",
     "typescript": "*"
   },
   "dependencies": {
     "@colyseus/arena": "^0.14.22",
     "@colyseus/monitor": "^0.14.20",
+    "@colyseus/schema": "^1.0.38",
     "colyseus": "^0.14.20"
   }
 }
